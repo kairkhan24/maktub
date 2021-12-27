@@ -34,32 +34,32 @@ services:
     environment:
       PROCESS: DEV_DJANGO
 
-#  celery-worker:
-#    <<: *django
-#    container_name: local_maktub_celery_worker
-#    build: ./
-#    ports: [ ]
-#    privileged: false
-#    environment:
-#      PROCESS: DEV_CELERY_WORKER
-#
-#  celery-beat:
-#    <<: *django
-#    container_name: local_maktub_celery_beat
-#    build: ./
-#    ports: [ ]
-#    environment:
-#      PROCESS: DEV_CELERY_BEAT
-#
-#  flower:
-#    <<: *django
-#    container_name: local_maktub_flower
-#    depends_on:
-#      - redis
-#      - postgres
-#      - celery-beat
-#      - celery-worker
-#    environment:
-#      PROCESS: FLOWER
-#    ports:
-#      - "5555:5555"
+  celery-worker:
+    <<: *django
+    container_name: local_maktub_celery_worker
+    build: ./
+    ports: [ ]
+    privileged: false
+    environment:
+      PROCESS: DEV_CELERY_WORKER
+
+  celery-beat:
+    <<: *django
+    container_name: local_maktub_celery_beat
+    build: ./
+    ports: [ ]
+    environment:
+      PROCESS: DEV_CELERY_BEAT
+
+  flower:
+    <<: *django
+    container_name: local_maktub_flower
+    depends_on:
+      - redis
+      - postgres
+      - celery-beat
+      - celery-worker
+    environment:
+      PROCESS: FLOWER
+    ports:
+      - "5555:5555"
